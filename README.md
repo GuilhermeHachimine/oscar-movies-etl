@@ -4,23 +4,6 @@ This project implements a modular ETL pipeline in Python to process Oscar-nomina
 
 The final output contains Oscar-winning movies released after 1955 with a minimum budget of 15 million USD.
 
-# Project Structure
-
-etl_toolkit/
-│
-├── data/
-│   ├── raw/              # Input JSON files
-│   └── output/           # Generated CSV output
-│
-├── src/
-│   ├── cleaning.py       # Data cleaning logic
-│   ├── transform.py      # Dataset construction
-│   └── duckdb_client.py  # DuckDB integration
-│
-├── main.py               # Pipeline entry point
-├── requirements.txt
-└── EXPLAIN.md
-
 # Requirements
 
 - Python 3.8+
@@ -32,22 +15,23 @@ Clone the repository or extract the ZIP file.
 
 Create a virtual environment:
 
+```
 python -m venv venv
-
+```
 Activate the virtual environment (Windows):
-
+```
 venv\Scripts\activate
-
+```
 Install dependencies:
-
+```
 pip install -r requirements.txt
-
+```
 # Running the Pipeline
 
 Execute:
-
+```
 python main.py
-
+```
 The script will:
 
 - Load raw JSON files from `data/raw/`
