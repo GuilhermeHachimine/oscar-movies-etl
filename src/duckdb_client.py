@@ -19,18 +19,18 @@ class DuckDBClient:
         try:
             return self.con.execute(sql).df()
         except Exception:
-            logger.exception("Query execution failed")
+            logger.exception("DuckDB query execution failed")
             raise
 
-    def export_csv(self, sql: str, path: str):
+    def export(self, sql: str, path: str, file_format: str = "csv"):
         try:
             self.con.execute(
                 f"""
                 COPY ({sql})
                 TO '{path}'
-                (FORMAT CSV, HEADER)
+                (FORMAT {file_format.upper()}, HEADER)
                 """
             )
         except Exception:
-            logger.exception("Failed to export CSV using DuckDB")
+            logger.exception("DuckDB export failed")
             raise

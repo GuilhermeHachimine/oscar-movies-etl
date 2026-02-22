@@ -67,7 +67,7 @@ def main():
         """
 
         logger.info("Executing filtering query and exporting CSV")
-        client.export_csv(query, str(OUTPUT_FILE))
+        client.export(query, str(OUTPUT_FILE))
 
         logger.info(f"Pipeline completed successfully. Output: {OUTPUT_FILE}")
 
