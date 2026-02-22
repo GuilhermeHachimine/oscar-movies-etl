@@ -1,4 +1,7 @@
 import duckdb
+import logging
+
+logger = logging.getLogger(__name__)
 
 
 class DuckDBClient:
@@ -6,16 +9,28 @@ class DuckDBClient:
         self.con = duckdb.connect()
 
     def register(self, name: str, df):
-        self.con.register(name, df)
+        try:
+            self.con.register(name, df)
+        except Exception:
+            logger.exception("Failed to register dataframe in DuckDB")
+            raise
 
     def query(self, sql: str):
-        return self.con.execute(sql).df()
+        try:
+            return self.con.execute(sql).df()
+        except Exception:
+            logger.exception("Query execution failed")
+            raise
 
     def export_csv(self, sql: str, path: str):
-        self.con.execute(
-            f"""
-            COPY ({sql})
-            TO '{path}'
-            (FORMAT CSV, HEADER)
-            """
-        )
+        try:
+            self.con.execute(
+                f"""
+                COPY ({sql})
+                TO '{path}'
+                (FORMAT CSV, HEADER)
+                """
+            )
+        except Exception:
+            logger.exception("Failed to export CSV using DuckDB")
+            raise

@@ -63,4 +63,6 @@ The first four-digit year in the `release_dates` field represents the release ye
 
 # Possible Improvements
 
-With additional time, the solution could be extended with unit tests for cleaning functions, structured logging, configurable currency rates, more robust currency parsing patterns, and schema validation before processing.
+With additional time, the solution could be extended with unit tests for cleaning functions, configurable currency rates, more robust currency parsing patterns, and explicit schema validation before processing.
+
+Additional improvements could include containerization (Docker) for environment consistency and CI integration to automate validation of the pipeline.
